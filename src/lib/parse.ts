@@ -9,7 +9,8 @@ import * as untildify from "untildify";
  * @param {string}  path Path to the file to parse
  */
 export let parseSyncfile = (path: string) => {
-  const file = readFileSync(path).toString();
+  const expandedPath = untildify(path);
+  const file = readFileSync(expandedPath).toString();
   const lines = file.split("\n");
 
   const obj = { };
@@ -40,4 +41,18 @@ export let parseSyncfile = (path: string) => {
   });
 
   return obj;
+};
+
+export let parseTextFile = (conf: any): string => {
+  let out = "";
+
+  for (const program in conf) {
+    if (defaults[program]) {
+      out = `${out}${program}\n`;
+    } else {
+      out = `${out}${program}="${conf[program]}"\n`;
+    }
+  }
+
+  return out;
 };

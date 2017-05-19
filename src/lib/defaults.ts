@@ -1,6 +1,7 @@
 
 export let defaults = {
-  "git": "~/.gitconfig",
-  "vim": "~/.vimrc",
-  "zsh": "~/.zshrc"
+  bash: "~/.bashrc",
+  git: "~/.gitconfig",
+  vim: "~/.vimrc",
+  zsh: "~/.zshrc"
 };
